@@ -1,0 +1,246 @@
+$darkGrey: #161616;
+$white: #ffffff;
+$inputText: #bdbdbd;
+$btnDisabledORHover: #e9e9e9;
+$transition: 300ms;
+$btnClickShadow: 0px 0px 0px $darkGrey;
+
+body {
+  margin: 0px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+.gap {
+  margin-left: 28px !important;
+}
+.won {
+  color: #008800;
+}
+.lost {
+  color: #df0303;
+}
+.loader {
+  border: 4px solid #f6f6f6;
+  border-top: 4px solid $darkGrey;
+  border-radius: 50%;
+  width: 64px;
+  aspect-ratio: 1/1;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.name_display {
+  cursor: pointer;
+}
+
+.start-wrap,
+.load-wrap {
+  height: 260px;
+  display: flex;
+  flex-direction: row;
+  width: 70vw;
+  border: 2px solid $darkGrey;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.start-wrap {
+  .start-btns {
+    border: 2px solid $darkGrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: pointer;
+    transition: $transition;
+    background-color: $white;
+    color: $darkGrey;
+    size: 20px;
+    padding: 12px 32px;
+    &:hover {
+      background-color: $darkGrey;
+      color: $white;
+    }
+  }
+}
+.entry-wrap {
+  height: 260px;
+  display: flex;
+  flex-direction: row;
+  width: 70vw;
+  border: 2px solid $darkGrey;
+  justify-content: flex-start;
+  align-items: flex-start;
+  .input-wrap {
+    display: flex;
+    margin: 12px;
+    zoom: 0.6;
+    .input {
+      border: 2px solid $darkGrey;
+      border-right: none;
+      outline: none;
+      padding: 0px 16px;
+      color: $inputText;
+    }
+    .arrow {
+      border: 2px solid $darkGrey;
+      padding: 0px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      user-select: none;
+      cursor: pointer;
+      background-color: $darkGrey;
+      color: $white;
+      transition: $transition;
+      &:hover {
+        background-color: $white;
+        color: $darkGrey;
+      }
+    }
+  }
+}
+.guess-wrap {
+  height: 260px;
+  display: flex;
+  flex-direction: row;
+  user-select: none;
+  .guess {
+    border: 2px solid $darkGrey;
+    width: 75%;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    .guess-letter {
+      font-size: 32px;
+      margin-right: 12px;
+    }
+    .info,
+    .close {
+      background-color: transparent;
+      height: 24px;
+      aspect-ratio: 1/1;
+      border: 2px solid $darkGrey;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-left: 0px;
+      border-bottom: 0px;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 1px -1px 0px 0px $darkGrey;
+      &:active {
+        box-shadow: $btnClickShadow;
+      }
+    }
+  }
+  .wrong {
+    border: 2px solid $darkGrey;
+    border-left: 0px;
+    flex: 1;
+    padding: 6px;
+    position: relative;
+    .used-letter {
+      border: 2px solid $darkGrey;
+      display: inline-block;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 16px;
+      padding: 6px;
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+    .tries-indicator {
+      height: 40px;
+      width: 100%;
+      border-top: 2px solid $darkGrey;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+}
+.keyboard-wrap {
+  border: 2px solid $darkGrey;
+  border-top: 0px;
+  padding: 42px 0px;
+  position: relative;
+  user-select: none;
+  .btn-rows {
+    margin: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 44px;
+    &:first-child {
+      margin-top: 0px;
+    }
+    &:last-child {
+      margin-bottom: 0px;
+    }
+    .custom-btn {
+      position: relative;
+      background-color: $white;
+      border: 1px solid $darkGrey;
+      font-size: 26px;
+      padding: 4px 10px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 3px 2px 0px 0px $darkGrey;
+      transition-duration: 800ms;
+      &:hover {
+        transition-duration: 100ms;
+        background-color: $btnDisabledORHover;
+      }
+      &:active {
+        top: 3px;
+        box-shadow: $btnClickShadow;
+      }
+      &.disabled {
+        background-color: $btnDisabledORHover;
+        cursor: no-drop;
+      }
+    }
+  }
+  .refresh {
+    background-color: transparent;
+    height: 40px;
+    aspect-ratio: 1/1;
+    border: 2px solid $darkGrey;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-right: 0px;
+    border-bottom: 0px;
+    cursor: pointer;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -2px -1px 0px 0px $darkGrey;
+    &:active {
+      box-shadow: $btnClickShadow;
+    }
+  }
+}
