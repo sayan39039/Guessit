@@ -8,7 +8,6 @@ const Entry = () => {
   const arrowClickHandler = async () => {
     setGuessName(inputValue);
   };
-  console.log(gameType);
   const inputClickHandler = (e: any) => {
     if (e.keyCode === 13) arrowClickHandler();
   };
