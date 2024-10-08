@@ -1,12 +1,6 @@
 import { useContext, useState } from 'react';
 import { GuessContext } from '../context/Context';
-import {
-  COMPUTER,
-  MAX_TRIES,
-  MOVIE_GENRE_MAPPING,
-  UNDERSCORE,
-  VOWELS,
-} from '../context/Constants';
+import { COMPUTER, MAX_TRIES, UNDERSCORE, VOWELS } from '../context/Constants';
 
 const RenderGuessName: any = (props: {
   infoVisibility: { isInfoVisible: boolean; setIsInfoVisible: Function };
@@ -73,13 +67,16 @@ const RenderGuessName: any = (props: {
       )}
       {randomDetails?.genres && (
         <div>
-          <strong>Genres: </strong>
-          {randomDetails?.genres.map(
-            (g: any, i: number) =>
-              `${MOVIE_GENRE_MAPPING[g]}${
-                randomDetails.genres.length - 1 !== i ? ', ' : ''
-              }`
-          )}
+          <strong>Movie: </strong>
+          <span
+            className="name_display"
+            role="button"
+            onClick={() => {
+              searchGoogle(randomDetails?.title);
+            }}
+          >
+            {randomDetails?.title}
+          </span>
         </div>
       )}
       <button
