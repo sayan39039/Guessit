@@ -8,4 +8,6 @@ export const COLLEAGUE = 'COLLEAGUE';
 export const COMPUTER = 'COMPUTER';
 export const UNDERSCORE = '_';
 
-export const API_URL = `http://localhost:6090/movie`;
+export const BASE_URL = 'https://guessit-uoro.onrender.com';
+
+export const API_URL = `${BASE_URL}/movie`;
