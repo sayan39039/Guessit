@@ -1,12 +1,6 @@
 import { useContext, useState } from 'react';
 import { GuessContext } from '../context/Context';
-import {
-  COMPUTER,
-  MAX_TRIES,
-  MOVIE_GENRE_MAPPING,
-  UNDERSCORE,
-  VOWELS,
-} from '../context/Constants';
+import { COMPUTER, MAX_TRIES, UNDERSCORE, VOWELS } from '../context/Constants';
 
 const RenderGuessName: any = (props: {
   infoVisibility: { isInfoVisible: boolean; setIsInfoVisible: Function };
@@ -38,7 +32,9 @@ const RenderGuessName: any = (props: {
             onClick={() => {
               searchGoogle(randomDetails?.title);
             }}
-          ></span>
+          >
+            {randomDetails?.title}
+          </span>
         </div>
       )}
       {randomDetails?.released_on && (
@@ -76,9 +72,7 @@ const RenderGuessName: any = (props: {
           <strong>Genres: </strong>
           {randomDetails?.genres.map(
             (g: any, i: number) =>
-              `${MOVIE_GENRE_MAPPING[g]}${
-                randomDetails.genres.length - 1 !== i ? ', ' : ''
-              }`
+              g && `${g}${randomDetails.genres.length - 1 !== i ? ', ' : ''}`
           )}
         </div>
       )}
@@ -104,6 +98,9 @@ const RenderGuessName: any = (props: {
         className={`guess-letter ${letter === ' ' && 'gap'} ${
           gameWon && 'won'
         } ${numberOfTries === MAX_TRIES && 'lost'}`}
+        onClick={() => {
+          searchGoogle(randomDetails?.title);
+        }}
       >
         {letter === ' ' ? <>&nbsp;</> : letterDecider}
       </div>
