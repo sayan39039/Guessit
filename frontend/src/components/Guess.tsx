@@ -32,7 +32,9 @@ const RenderGuessName: any = (props: {
             onClick={() => {
               searchGoogle(randomDetails?.title);
             }}
-          ></span>
+          >
+            {randomDetails?.title}
+          </span>
         </div>
       )}
       {randomDetails?.released_on && (
@@ -67,16 +69,8 @@ const RenderGuessName: any = (props: {
       )}
       {randomDetails?.genres && (
         <div>
-          <strong>Movie: </strong>
-          <span
-            className="name_display"
-            role="button"
-            onClick={() => {
-              searchGoogle(randomDetails?.title);
-            }}
-          >
-            {randomDetails?.title}
-          </span>
+          <strong>Genre: </strong>
+          {randomDetails?.genres?.join(', ')}
         </div>
       )}
       <button
