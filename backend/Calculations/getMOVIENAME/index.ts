@@ -37,8 +37,8 @@ export const getMOVIENAME = (callback: Function) => {
       data += chunk;
     });
     response.on("end", () => {
-      const body = JSON.parse(data);
-      callback(body);
+      const res = JSON.parse(data);
+      callback(res);
     });
   });
   request.on("error", (error) => {
