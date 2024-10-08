@@ -32,9 +32,7 @@ const RenderGuessName: any = (props: {
             onClick={() => {
               searchGoogle(randomDetails?.title);
             }}
-          >
-            {randomDetails?.title}
-          </span>
+          ></span>
         </div>
       )}
       {randomDetails?.released_on && (
@@ -69,11 +67,16 @@ const RenderGuessName: any = (props: {
       )}
       {randomDetails?.genres && (
         <div>
-          <strong>Genres: </strong>
-          {randomDetails?.genres.map(
-            (g: any, i: number) =>
-              g && `${g}${randomDetails.genres.length - 1 !== i ? ', ' : ''}`
-          )}
+          <strong>Movie: </strong>
+          <span
+            className="name_display"
+            role="button"
+            onClick={() => {
+              searchGoogle(randomDetails?.title);
+            }}
+          >
+            {randomDetails?.title}
+          </span>
         </div>
       )}
       <button
@@ -98,9 +101,6 @@ const RenderGuessName: any = (props: {
         className={`guess-letter ${letter === ' ' && 'gap'} ${
           gameWon && 'won'
         } ${numberOfTries === MAX_TRIES && 'lost'}`}
-        onClick={() => {
-          searchGoogle(randomDetails?.title);
-        }}
       >
         {letter === ' ' ? <>&nbsp;</> : letterDecider}
       </div>

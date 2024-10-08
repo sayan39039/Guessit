@@ -13,7 +13,7 @@ const Start = () => {
     setGuessName(name);
     setRandomDetails(fullDetails);
   };
-  const gameTypeHandler = (type: String) => {
+  const gameTypeHandler = (type: string) => {
     setGameType(type);
     type === 'COMPUTER' && apiCall();
   };

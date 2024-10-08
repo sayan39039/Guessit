@@ -5,12 +5,12 @@ interface Props {
 }
 
 interface ContextProps {
-  guessName: String | null;
-  usedLetters: String[] | any[];
-  usedCorrectLetters: String[] | any[];
+  guessName: string | null;
+  usedLetters: string[] | any[];
+  usedCorrectLetters: string[] | any[];
   numberOfTries: number;
-  gameWon: Boolean;
-  gameType: String | null;
+  gameWon: boolean;
+  gameType: string | null;
   randomDetails: any;
   setGuessName: Function;
   setUsedLetters: Function;

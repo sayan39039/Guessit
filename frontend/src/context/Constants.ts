@@ -9,5 +9,4 @@ export const COMPUTER = 'COMPUTER';
 export const UNDERSCORE = '_';
 
 export const BASE_URL = 'https://guessit-uoro.onrender.com';
-
 export const API_URL = `${BASE_URL}/movie`;
