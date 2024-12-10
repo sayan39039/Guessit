@@ -21,68 +21,47 @@ const RenderGuessName: any = (props: {
     0 -
     ((guessName as string)?.length -
       (guessName as string)?.replace(/\s/g, '').length);
+  const renderDetail = (label: string, value: React.ReactNode) =>
+    value ? (
+      <div>
+        <strong>{label}: </strong>
+        {value}
+      </div>
+    ) : null;
+
   const returnRandomDetailsElement = (
     <div className="random-details-wrap">
-      {numberOfTries === MAX_TRIES && randomDetails?.title && (
-        <div>
-          <strong>Movie: </strong>
+      {numberOfTries === MAX_TRIES &&
+        randomDetails?.title &&
+        renderDetail(
+          'Movie',
           <span
             className="name_display"
             role="button"
-            onClick={() => {
-              searchGoogle(randomDetails?.title);
-            }}
+            onClick={() => searchGoogle(randomDetails.title)}
           >
-            {randomDetails?.title}
+            {randomDetails.title}
           </span>
-        </div>
+        )}
+      {renderDetail(
+        'Release Year',
+        randomDetails?.released_on?.substring(0, 4)
       )}
-      {randomDetails?.released_on && (
-        <div>
-          <strong>Release Year: </strong>
-          {randomDetails?.released_on?.substring(0, 4)}
-        </div>
-      )}
-      {randomDetails?.tagline && (
-        <div>
-          <strong>Tagline: </strong>
-          {randomDetails?.tagline}
-        </div>
-      )}
-      {randomDetails?.runtime && (
-        <div>
-          <strong>Runtime: </strong>
-          {randomDetails?.runtime} minutes
-        </div>
-      )}
-      {randomDetails?.imdb_rating && (
-        <div>
-          <strong>IMDB rating: </strong>
-          {randomDetails?.imdb_rating}
-        </div>
-      )}
-      {randomDetails?.sources && (
-        <div>
-          <strong>Sources: </strong>
-          {randomDetails?.sources[0]}
-        </div>
-      )}
-      {randomDetails?.genres && (
-        <div>
-          <strong>Genre: </strong>
-          {randomDetails?.genres?.join(', ')}
-        </div>
-      )}
+      {renderDetail('Tagline', randomDetails?.tagline)}
+      {renderDetail('Runtime', `${randomDetails?.runtime} minutes`)}
+      {renderDetail('IMDB rating', randomDetails?.imdb_rating)}
+      {renderDetail('Sources', randomDetails?.sources?.[0])}
+      {renderDetail('Genre', randomDetails?.genres?.join(', '))}
+
       <button
         className="close"
-        onClick={() => {
-          props.infoVisibility.setIsInfoVisible(false);
-        }}
+        onClick={() => props.infoVisibility.setIsInfoVisible(false)}
       >
         ✕
       </button>
     </div>
   );
+
   const returnElement = (guess_name_ARRAY as string[]).map((letter, index) => {
     const letterDecider =
       VOWELS.includes(letter) || usedCorrectLetters.includes(letter)
@@ -95,6 +74,9 @@ const RenderGuessName: any = (props: {
         className={`guess-letter ${letter === ' ' && 'gap'} ${
           gameWon && 'won'
         } ${numberOfTries === MAX_TRIES && 'lost'}`}
+        onClick={() => {
+          gameWon && searchGoogle(guessName as string);
+        }}
       >
         {letter === ' ' ? <>&nbsp;</> : letterDecider}
       </div>
@@ -147,4 +129,5 @@ const Guess = () => {
     </div>
   ) : null;
 };
+
 export default Guess;
