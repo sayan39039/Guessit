@@ -9,7 +9,7 @@ import './styles.scss';
 const App = () => {
   return (
     <GuessContextProvider>
-      <div>
+      <div id="guessItWrap">
         <Start />
         <Loader />
         <Entry />

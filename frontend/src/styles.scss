@@ -223,24 +223,32 @@ body {
       }
     }
   }
-  .refresh {
+  .absolute-btn {
     background-color: transparent;
     height: 40px;
     aspect-ratio: 1/1;
-    border: 2px solid $darkGrey;
     position: absolute;
     bottom: 0;
-    right: 0;
-    border-right: 0px;
+    border: 2px solid $darkGrey;
     border-bottom: 0px;
     cursor: pointer;
     font-size: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: -2px -1px 0px 0px $darkGrey;
     &:active {
       box-shadow: $btnClickShadow;
     }
+  }
+  .refresh {
+    right: 0;
+    box-shadow: -2px -1px 0px 0px $darkGrey;
+    border-right: 0px;
+  }
+  .screenshot {
+    left: 0;
+    box-shadow: 2px -1px 0px 0px $darkGrey;
+    border-left: 0px;
+    font-weight: 600;
   }
 }

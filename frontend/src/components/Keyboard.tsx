@@ -8,6 +8,7 @@ import {
   ROW3,
   VOWELS,
 } from '../context/Constants';
+import html2canvas from 'html2canvas';
 
 const RenderLetterRow = (props: { letters: string[] }) => {
   const { letters } = props;
@@ -56,6 +57,22 @@ const Keyboard = () => {
   const reload_window = () => {
     window.location.reload();
   };
+  const take_screenshot = async () => {
+    const element = document.getElementById('guessItWrap');
+    const canvas = await html2canvas(element as HTMLElement);
+    canvas.toBlob(async (blob) => {
+      try {
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            'image/png': blob as any,
+          }),
+        ]);
+        alert('Screenshot copied to clipboard!');
+      } catch (e) {
+        console.error('Failed to copy screenshot to clipboard', e);
+      }
+    });
+  };
 
   return guessName ? (
     <div className="keyboard-wrap">
@@ -63,8 +80,19 @@ const Keyboard = () => {
       <RenderLetterRow letters={ROW1} />
       <RenderLetterRow letters={ROW2} />
       <RenderLetterRow letters={ROW3} />
-      <button className="refresh" onClick={reload_window}>
+      <button
+        className="absolute-btn refresh"
+        onClick={reload_window}
+        title="Reload window"
+      >
         ↻
+      </button>
+      <button
+        className="absolute-btn screenshot"
+        onClick={take_screenshot}
+        title="Take screenshot"
+      >
+        ⎙
       </button>
     </div>
   ) : null;
