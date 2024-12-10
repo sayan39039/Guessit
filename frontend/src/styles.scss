@@ -41,6 +41,46 @@ body {
 .name_display {
   cursor: pointer;
 }
+.snackbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 1px solid $darkGrey;
+  padding: 8px 12px;
+  margin: 6px 6px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+  .container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    .bar {
+      position: relative;
+      overflow: hidden;
+      z-index: -1;
+      height: 100%;
+      &::after {
+        content: '';
+        height: 100%;
+        position: absolute;
+        background-color: $btnDisabledORHover;
+        animation: load 3s infinite;
+      }
+      @keyframes load {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
 
 .start-wrap,
 .load-wrap {

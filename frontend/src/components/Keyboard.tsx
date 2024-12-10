@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import html2canvas from 'html2canvas';
 import { GuessContext } from '../context/Context';
 import {
   MAX_TRIES,
@@ -8,7 +9,7 @@ import {
   ROW3,
   VOWELS,
 } from '../context/Constants';
-import html2canvas from 'html2canvas';
+import Toast from './Toast';
 
 const RenderLetterRow = (props: { letters: string[] }) => {
   const { letters } = props;
@@ -67,9 +68,9 @@ const Keyboard = () => {
             'image/png': blob as any,
           }),
         ]);
-        alert('Screenshot copied to clipboard!');
+        Toast('Screenshot taken, now go away');
       } catch (e) {
-        console.error('Failed to copy screenshot to clipboard', e);
+        Toast('Failed to copy screenshot to clipboard');
       }
     });
   };
@@ -97,4 +98,5 @@ const Keyboard = () => {
     </div>
   ) : null;
 };
+
 export default Keyboard;

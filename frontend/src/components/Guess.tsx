@@ -15,7 +15,7 @@ const RenderGuessName: any = (props: {
   } = useContext(GuessContext);
   const guess_name_ARRAY = guessName?.split('');
   const searchGoogle = (name: string) => {
-    window.open(`http://google.com/search?q=${name} movie`);
+    name && window.open(`http://google.com/search?q=${name} movie`);
   };
   let UNDERSCORE_COUNTER =
     0 -
