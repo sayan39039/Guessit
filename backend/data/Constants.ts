@@ -7,6 +7,7 @@ export const WHITELISTS = [
 export const AVAILABILITY = "onAnySource";
 export const CONTENT_KIND = "movie";
 export const MINIMUM_IMDB = "8";
+export const MINIMUM_SCORE = "80";
 export const NOCACHE = "true";
 export const REGION = "us";
 export const SPIN_COUNT = "4";

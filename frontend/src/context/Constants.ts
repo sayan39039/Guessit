@@ -8,5 +8,12 @@ export const COLLEAGUE = 'COLLEAGUE';
 export const COMPUTER = 'COMPUTER';
 export const UNDERSCORE = '_';
 
-export const BASE_URL = 'https://guessit-uoro.onrender.com';
-export const API_URL = `${BASE_URL}/movie`;
+export const BASE_URL = () => {
+  if (process.env.environment === 'DEV') {
+    return 'http://localhost:6090';
+  } else {
+    return 'https://guessit-uoro.onrender.com';
+  }
+};
+
+export const API_URL = `${BASE_URL()}/movie`;

@@ -10,7 +10,7 @@ module.exports={
     },
     plugins:[
         new webpack.DefinePlugin({
-            'process.env.endPoint': JSON.stringify('UATep')
+            'process.env.environment': JSON.stringify('DEV')
         }),
         new ReactRefreshWebpackPlugin(),
     ]
