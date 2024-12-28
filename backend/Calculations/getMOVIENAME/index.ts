@@ -38,6 +38,7 @@ export const getMOVIENAME = (callback: Function) => {
     });
     response.on("end", () => {
       const res = JSON.parse(data);
+      console.table(params);
       callback(res);
     });
   });
