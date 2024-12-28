@@ -12,6 +12,7 @@ interface ContextProps {
   gameWon: boolean;
   gameType: string | null;
   randomDetails: any;
+  isNotFound: boolean;
   setGuessName: Function;
   setUsedLetters: Function;
   setUsedCorrectLetters: Function;
@@ -19,6 +20,7 @@ interface ContextProps {
   setGameWon: Function;
   setGameType: Function;
   setRandomDetails: Function;
+  setIsNotFound: Function;
 }
 
 export const GuessContext = createContext({} as ContextProps);
@@ -31,6 +33,7 @@ export const GuessContextProvider = ({ children }: Props) => {
   const [gameWon, setGameWon] = useState(false);
   const [gameType, setGameType] = useState(null);
   const [randomDetails, setRandomDetails] = useState(null);
+  const [isNotFound, setIsNotFound] = useState(false);
   const returnValues = {
     guessName,
     usedLetters,
@@ -39,6 +42,7 @@ export const GuessContextProvider = ({ children }: Props) => {
     gameWon,
     gameType,
     randomDetails,
+    isNotFound,
     setGuessName,
     setUsedLetters,
     setUsedCorrectLetters,
@@ -46,6 +50,7 @@ export const GuessContextProvider = ({ children }: Props) => {
     setGameWon,
     setGameType,
     setRandomDetails,
+    setIsNotFound,
   };
   return (
     <GuessContext.Provider value={returnValues}>

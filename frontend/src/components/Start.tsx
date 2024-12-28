@@ -3,15 +3,27 @@ import { GuessContext } from '../context/Context';
 import { API_URL, COLLEAGUE, COMPUTER } from '../context/Constants';
 
 const Start = () => {
-  const { gameType, setGuessName, setGameType, setRandomDetails } =
-    useContext(GuessContext);
+  const {
+    gameType,
+    setGuessName,
+    setGameType,
+    setRandomDetails,
+    setIsNotFound,
+  } = useContext(GuessContext);
   const apiCall = async () => {
-    const fullDetails = await fetch(API_URL)
-      .then((r) => r.json())
-      .then((r) => r);
-    const name = fullDetails.title.toUpperCase().replace(/[^a-zA-Z0-9 ]/g, '');
-    setGuessName(name);
-    setRandomDetails(fullDetails);
+    try {
+      const fullDetails = await fetch(API_URL)
+        .then((r) => r.json())
+        .then((r) => r);
+      const name = fullDetails.title
+        .toUpperCase()
+        .replace(/[^a-zA-Z0-9 ]/g, '');
+      setGuessName(name);
+      setRandomDetails(fullDetails);
+    } catch (error) {
+      console.error('Error fetching API:', error);
+      setIsNotFound(true);
+    }
   };
   const gameTypeHandler = (type: string) => {
     setGameType(type);
