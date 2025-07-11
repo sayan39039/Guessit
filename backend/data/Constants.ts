@@ -1,4 +1,5 @@
-export const PORT = 6090;
+export const APP_PORT = 6090;
+export const SERVER_PORT = 6009;
 export const WHITELISTS = [
   "http://localhost:9000",
   "https://sayan39039.github.io",

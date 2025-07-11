@@ -83,6 +83,42 @@ body {
   }
 }
 
+.chip-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 42px;
+  color: $darkGrey;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  cursor: pointer;
+  .chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: fit-content;
+    border: 1px solid;
+    border-radius: 12px;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    justify-content: space-around;
+    .dot {
+      height: 10px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      background-color: $darkGrey;
+      border: 1px solid $darkGrey;
+    }
+  }
+}
+.username-wrap,
 .start-wrap,
 .load-wrap,
 .notfound-wrap {
@@ -128,9 +164,11 @@ body {
     size: 20px;
     padding: 12px 32px;
     transform: rotate3d(4, 0, 2, 172deg);
+    transition: 500ms;
     &:hover {
       background-color: $darkGrey;
       color: $white;
+      transform: unset;
     }
   }
 }
@@ -148,6 +186,33 @@ body {
     size: 20px;
     padding: 12px 32px;
     &:hover {
+      background-color: $darkGrey;
+      color: $white;
+    }
+  }
+}
+.username-wrap {
+  .username-btn,
+  .username-inp {
+    border: 2px solid $darkGrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: pointer;
+    transition: $transition;
+    background-color: $white;
+    color: $darkGrey;
+    size: 20px;
+    padding: 12px 32px;
+    &:hover {
+      background-color: $darkGrey;
+      color: $white;
+    }
+  }
+  .username-inp {
+    outline: none;
+    &:focus {
       background-color: $darkGrey;
       color: $white;
     }
@@ -302,6 +367,17 @@ body {
       &.disabled {
         background-color: $btnDisabledORHover;
         cursor: no-drop;
+      }
+      & .name-indicator {
+        content: '';
+        height: 9px;
+        aspect-ratio: 1 / 1;
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        border-radius: 50%;
+        background-color: $darkGrey;
+        border: 1px solid;
       }
     }
   }

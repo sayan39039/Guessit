@@ -7,6 +7,12 @@ export const MAX_TRIES = 9;
 export const COLLEAGUE = 'COLLEAGUE';
 export const COMPUTER = 'COMPUTER';
 export const UNDERSCORE = '_';
+export const SNACKBAR_TIMER_IN_SECONDS = 3;
+export const SOCKET_MESSAGE_TYPE = {
+  JOINED: 'JOINED',
+  STARTED: 'STARTED',
+  GUESSED: 'GUESSED',
+};
 
 export const BASE_URL = () => {
   if (process.env.environment === 'DEV') {
@@ -16,4 +22,6 @@ export const BASE_URL = () => {
   }
 };
 
-export const API_URL = `${BASE_URL()}/movie`;
+export const MOVIE_API_URL = `${BASE_URL()}/movie`;
+export const GAMEPLAY_DATA_API_URL = `${BASE_URL()}/currentData`;
+export const CLEAN_HOUSE_API_URL = `${BASE_URL()}/cleanHouse`;

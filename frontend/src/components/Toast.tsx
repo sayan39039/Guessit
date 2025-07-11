@@ -1,9 +1,10 @@
+import { SNACKBAR_TIMER_IN_SECONDS } from '../context/Constants';
+
 const removeToast = () => {
   const T = document.getElementById('snackbar');
   T?.parentNode?.removeChild(T);
 };
 const Toast = (Text: string) => {
-  const SNACKBAR_TIMER_IN_SECONDS = 3;
   const D = document.createElement('div');
   D.classList.add('snackbar');
   D.innerHTML = Text;

@@ -1,8 +1,21 @@
 import { useContext, useState } from 'react';
+import html2canvas from 'html2canvas';
 import { GuessContext } from '../context/Context';
-import { COMPUTER, MAX_TRIES, UNDERSCORE, VOWELS } from '../context/Constants';
+import Toast from '../components/Toast';
+import { socket } from '../components/Socket';
+import {
+  COMPUTER,
+  MAX_TRIES,
+  NUMBERS,
+  ROW1,
+  ROW2,
+  ROW3,
+  SOCKET_MESSAGE_TYPE,
+  UNDERSCORE,
+  VOWELS,
+} from '../context/Constants';
 
-const RenderGuessName: any = (props: {
+const RenderGuessName: Function = (props: {
   infoVisibility: { isInfoVisible: boolean; setIsInfoVisible: Function };
 }) => {
   const {
@@ -89,7 +102,7 @@ const RenderGuessName: any = (props: {
     : returnElement;
 };
 
-const RenderUsedLetters: any = () => {
+const RenderUsedLetters: Function = () => {
   const { usedLetters } = useContext(GuessContext);
   const returnElements = usedLetters.map((letter, index) => {
     return (
@@ -101,11 +114,75 @@ const RenderUsedLetters: any = () => {
   return returnElements;
 };
 
+const RenderLetterRow: Function = (props: { letters: string[] }) => {
+  const { letters } = props;
+  const {
+    usedLetters,
+    setUsedLetters,
+    gameWon,
+    guessName,
+    usedCorrectLetters,
+    setUsedCorrectLetters,
+    numberOfTries,
+    setNumberOfTries,
+    userName,
+    gameplayData,
+  } = useContext(GuessContext);
+  const letterClickHandler = (L: string) => {
+    const response = {
+      name: userName,
+      type: SOCKET_MESSAGE_TYPE.GUESSED,
+      guessedLetter: L,
+    };
+    socket.emit('user-action', response);
+    if (guessName?.includes(L))
+      setUsedCorrectLetters([L, ...usedCorrectLetters]);
+    else {
+      setUsedLetters([L, ...usedLetters]);
+      setNumberOfTries(numberOfTries + 1);
+    }
+  };
+  const returnElement = letters.map((letter, index) => {
+    const isDisabled =
+      usedCorrectLetters.includes(letter) ||
+      usedLetters.includes(letter) ||
+      VOWELS.includes(letter) ||
+      numberOfTries === MAX_TRIES;
+    const clickedBy = gameplayData.filter(
+      (el: any) => el?.guessedLetter === letter
+    )[0]?.name;
+    const clickedByColor = gameplayData.filter(
+      (el: any) =>
+        el?.name === clickedBy && el?.type === SOCKET_MESSAGE_TYPE.JOINED
+    )[0]?.color;
+    return (
+      <button
+        id={clickedBy}
+        key={index}
+        className={`custom-btn ${(isDisabled || gameWon) && 'disabled'}`}
+        onClick={() => {
+          !isDisabled && !gameWon && letterClickHandler(letter);
+        }}
+      >
+        {clickedBy && (
+          <div
+            className="name-indicator"
+            style={{ backgroundColor: clickedByColor }}
+            title={clickedBy}
+          ></div>
+        )}
+        {letter}
+      </button>
+    );
+  });
+  return <div className="btn-rows">{returnElement}</div>;
+};
+
 const Guess = () => {
-  const { guessName, numberOfTries, gameType } = useContext(GuessContext);
+  const { numberOfTries, gameType } = useContext(GuessContext);
   const [isInfoVisible, setIsInfoVisible] = useState(false);
 
-  return guessName ? (
+  return (
     <div className="guess-wrap">
       <div className="guess">
         <RenderGuessName infoVisibility={{ isInfoVisible, setIsInfoVisible }} />
@@ -127,7 +204,61 @@ const Guess = () => {
         </div>
       </div>
     </div>
-  ) : null;
+  );
 };
 
-export default Guess;
+const Keyboard = () => {
+  const reload_window = () => {
+    window.location.reload();
+  };
+  const take_screenshot = async () => {
+    const element = document.getElementById('guessItWrap');
+    const canvas = await html2canvas(element as HTMLElement);
+    canvas.toBlob(async (blob) => {
+      try {
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            'image/png': blob as any,
+          }),
+        ]);
+        Toast('Screenshot taken, now go away');
+      } catch (e) {
+        Toast('Failed to copy screenshot to clipboard');
+      }
+    });
+  };
+
+  return (
+    <div className="keyboard-wrap">
+      <RenderLetterRow letters={NUMBERS} />
+      <RenderLetterRow letters={ROW1} />
+      <RenderLetterRow letters={ROW2} />
+      <RenderLetterRow letters={ROW3} />
+      <button
+        className="absolute-btn refresh"
+        onClick={reload_window}
+        title="Reload window"
+      >
+        ↻
+      </button>
+      <button
+        className="absolute-btn screenshot"
+        onClick={take_screenshot}
+        title="Take screenshot"
+      >
+        ⎙
+      </button>
+    </div>
+  );
+};
+
+const Console = () => {
+  return (
+    <>
+      <Guess />
+      <Keyboard />
+    </>
+  );
+};
+
+export default Console;
