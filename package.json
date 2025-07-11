@@ -9,7 +9,7 @@
     "lint": "next lint",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,mdx,css,yaml,yml}\"",
     "check": "prettier --check \"**/*.{ts,tsx,js,jsx,md,mdx,css,yaml,yml}\"",
-    "prepare": "npm run format && npm run check && husky"
+    "prepare": "npm run lint && npm run format && npm run check && husky"
   },
   "dependencies": {
     "next": "15.3.5",
