@@ -10,7 +10,10 @@
     outline: none;
     padding: 0px 16px;
     color: page.$darkGrey;
-    font-size: 28px;
+    font-size: 18px;
+    ::placeholder {
+      color: page.$grey;
+    }
   }
   .arrow {
     height: page.$btnHeight;

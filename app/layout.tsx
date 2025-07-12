@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Cousine } from 'next/font/google';
 
 const cousine = Cousine({
-  variable: '--font-cousine',
   subsets: ['latin'],
   weight: ['400', '700'],
 });
@@ -19,9 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <div className={`${cousine.className}`}>{children}</div>
-      </body>
+      <body className={cousine.className}>{children}</body>
     </html>
   );
 }
