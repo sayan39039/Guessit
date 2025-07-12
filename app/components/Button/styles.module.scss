@@ -1,0 +1,20 @@
+@use '@/page.module' as page;
+
+.customButton {
+  min-height: page.$btnHeight;
+  aspect-ratio: 462 / 108;
+  border: 2px solid page.$darkGrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  cursor: pointer;
+  transition: page.$transition;
+  font-size: 22px;
+  background-color: page.$darkGrey;
+  color: page.$white;
+  &:hover {
+    color: page.$darkGrey;
+    background-color: page.$white;
+  }
+}

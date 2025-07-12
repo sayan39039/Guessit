@@ -1,0 +1,29 @@
+@use '@/page.module' as page;
+
+.customButton {
+  height: 52px;
+  aspect-ratio: 1 / 1;
+  font-size: 32px;
+  position: relative;
+  background-color: page.$white;
+  border: 1px solid page.$darkGrey;
+  font-size: 26px;
+  padding: 4px 10px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 3px 2px 0px 0px page.$darkGrey;
+  transition-duration: 800ms;
+  &:hover {
+    transition-duration: 50ms;
+    // background-color: page.$grey;
+  }
+  &:active {
+    top: 3px;
+    box-shadow: 0px 0px 0px page.$darkGrey;
+  }
+  &.disabled {
+    background-color: page.$grey;
+    cursor: no-drop;
+  }
+}

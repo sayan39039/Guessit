@@ -1,0 +1,35 @@
+@use '@/page.module' as page;
+
+.inputWrap {
+  display: flex;
+  .input {
+    height: calc(page.$btnHeight - 4px);
+    aspect-ratio: 672 / 124;
+    border: 2px solid page.$darkGrey;
+    border-right: none;
+    outline: none;
+    padding: 0px 16px;
+    color: page.$darkGrey;
+    font-size: 28px;
+  }
+  .arrow {
+    height: page.$btnHeight;
+    aspect-ratio: 1 / 1;
+    font-family: inter;
+    border: 2px solid page.$darkGrey;
+    padding: 0px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    user-select: none;
+    cursor: pointer;
+    background-color: page.$darkGrey;
+    color: page.$white;
+    transition: page.$transition;
+    &:hover {
+      background-color: page.$white;
+      color: page.$darkGrey;
+    }
+  }
+}
