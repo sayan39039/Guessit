@@ -8,7 +8,11 @@ interface CustomButtonProps {
   className?: string;
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({ text, onClick, className }) => {
+const CustomButton: React.FC<CustomButtonProps> = ({
+  text,
+  onClick,
+  className,
+}) => {
   return (
     <button className={clsx(styles.customButton, className)} onClick={onClick}>
       {text}

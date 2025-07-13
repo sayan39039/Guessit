@@ -8,7 +8,7 @@ const Set = () => {
   return (
     <div className={styles.container}>
       <div className={styles.set}>
-        <InputCombo onButtonClick={() => {}} placeholder='Enter...'/>
+        <InputCombo onButtonClick={() => {}} placeholder="Enter..." />
       </div>
     </div>
   );

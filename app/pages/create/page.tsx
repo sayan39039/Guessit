@@ -5,8 +5,8 @@ import Button from '@comp/Button';
 const Create = () => {
   return (
     <div className={`${styles.container} ${styles.login}`}>
-      <Button text='Create'/>
-      <Button text='Join'/>
+      <Button text="Create" />
+      <Button text="Join" />
     </div>
   );
 };

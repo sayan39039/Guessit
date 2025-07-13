@@ -7,7 +7,7 @@ import InputCombo from '@comp/InputCombo';
 const Login = () => {
   return (
     <div className={styles.container}>
-      <InputCombo onButtonClick={() => {}} placeholder='Enter game id' />
+      <InputCombo onButtonClick={() => {}} placeholder="Enter game id" />
     </div>
   );
 };

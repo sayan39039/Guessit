@@ -8,7 +8,7 @@ import CustomButton from '@comp/CustomButton';
 export default function Home() {
   return (
     <div className={styles.page}>
-      <InputCombo onButtonClick={() => {  }} />
+      <InputCombo onButtonClick={() => {}} />
       <br />
       <Button text="Create" />
       <br />

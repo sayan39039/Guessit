@@ -31,7 +31,7 @@ const InputCombo: React.FC<InputComboProps> = ({
         value={inputValue}
         onChange={handleInputChange}
         autoFocus
-        id='inputCombo'
+        id="inputCombo"
       />
       <button className={styles.arrow} onClick={handleButtonClick}>
         →
