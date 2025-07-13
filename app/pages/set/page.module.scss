@@ -1,0 +1,9 @@
+@use '@/global.module' as page;
+
+.set {
+  border: 2px solid page.$darkGrey;
+  width: 50%;
+  aspect-ratio: 1.61 / 1;
+  padding: 12px;
+  min-width: 350px;
+}

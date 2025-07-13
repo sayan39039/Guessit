@@ -1,14 +1,16 @@
-import styles from './page.module.scss';
-import InputCombo from '@/components/InputCombo';
-import Button from '@/components/Button';
-import CustomButton from '@/components/CustomButton';
+'use client';
+
+import styles from './global.module.scss';
+import InputCombo from '@comp/InputCombo';
+import Button from '@comp/Button';
+import CustomButton from '@comp/CustomButton';
 
 export default function Home() {
   return (
     <div className={styles.page}>
-      <InputCombo />
+      <InputCombo onButtonClick={() => {  }} />
       <br />
-      <Button />
+      <Button text="Create" />
       <br />
       <CustomButton />
     </div>
