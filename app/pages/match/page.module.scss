@@ -4,7 +4,8 @@
   border: 2px solid page.$darkGrey;
   width: 60%;
   aspect-ratio: 1.61 / 1;
-  min-width: 350px;
+  min-width: 650px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   .topSection {
